@@ -3,4 +3,5 @@
   email = trondfroding@gmail.com
 [core]
   pager = diff-so-fancy | less --tabs=4 -RFX
-
+[alias]
+  br = branch
