@@ -1,0 +1,1 @@
+alias ip="ifconfig | grep -E 'inet 1[^2][^7].*netmask' | cut -d ' ' -f 2 | awk '{printf \"http://\"\$1\":8090\"}' | pbcopy"
