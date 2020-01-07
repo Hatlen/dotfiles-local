@@ -1,1 +1,7 @@
 alias ip="ifconfig | grep -E 'inet 1[^2][^7].*netmask' | cut -d ' ' -f 2 | awk '{printf \"http://\"\$1\":8090\"}' | pbcopy"
+# The curl commands are inspired (ripped) from this excellent blog post
+# https://dev.to/yuyatakeyama/how-i-measure-response-times-of-web-apis-using-curl-6nh
+# curls = curl starttransfer time
+alias curls="curl -s -o /dev/null -w '%{time_starttransfer}\n'"
+# curlt = curl total time
+alias curlt="curl -s -o /dev/null -w '%{time_total}\n'"
