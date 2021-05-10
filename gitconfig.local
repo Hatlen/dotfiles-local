@@ -6,4 +6,5 @@
 [alias]
   br = branch
   grahp = git log --all --decorate --oneline --graph
- 
+[pull]
+  default = current
