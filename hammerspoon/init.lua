@@ -91,8 +91,24 @@ polypaneWindowFilter:subscribe(hs.window.filter.windowUnfocused, function()
   polypaneKeybinding:disable()
 end)
 
+-- SWITCH TO PREVIOUSLY ACTIVE APP
+local lastApp = nil
+local currentApp = nil
 
+local function applicationWatcher(appName, eventType, appObject)
+    if eventType == hs.application.watcher.activated then
+        lastApp = currentApp
+        currentApp = appObject:bundleID()
+    end
+end
+local appWatcher = hs.application.watcher.new(applicationWatcher)
+appWatcher:start()
 
+hs.hotkey.bind({ 'option' }, 'm', function()
+    if lastApp then
+        hs.application.launchOrFocusByBundleID(lastApp)
+    end
+end)
 
 -------------------------------------------------------------------
 -- LAUNCHER
