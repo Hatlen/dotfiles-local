@@ -6,6 +6,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Add some paths
 path=(
+  $HOME/.deno/bin:$PATH
   # link python to python3 and pip to pip3
   /usr/local/opt/python@3.11/libexec/bin
   $HOME/go/bin

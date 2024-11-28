@@ -18,6 +18,7 @@ karabiner-elements
 warp
 raycast
 cursor
+slack
 
 ## Configure mac os
 
