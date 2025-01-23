@@ -39,13 +39,13 @@ hs.hotkey.bind(mash, 'n', function()
 end)
 
 -- QUICK APPLICATION SWITCHING
-hs.hotkey.bind({ 'cmd'}, 'h', function() hs.application.open('Safari.app') end)
--- hs.hotkey.bind({ 'cmd'}, 'h', function() hs.application.open('Google Chrome.app') end)
+-- hs.hotkey.bind({ 'cmd'}, 'h', function() hs.application.open('Safari.app') end)
+hs.hotkey.bind({ 'cmd'}, 'h', function() hs.application.open('Google Chrome.app') end)
 hs.hotkey.bind({ 'cmd'}, 'k', function() hs.application.open('Warp.app') end)
 hs.hotkey.bind({ 'cmd'}, 'j', function() hs.application.open('Cursor.app') end)
 -- hs.hotkey.bind({ 'cmd'}, 'j', function() hs.application.open('Visual Studio Code.app') end)
 hs.hotkey.bind({ 'cmd'}, 'g', function() hs.application.open('Slack.app') end)
-hs.hotkey.bind({ 'cmd'}, 'y', function() hs.application.open('Polypane.app') end)
+-- hs.hotkey.bind({ 'cmd'}, 'y', function() hs.application.open('Polypane.app') end)
 
 hs.hotkey.bind({ 'option'}, 'p', function() hs.application.open('Spotify.app') end)
 
@@ -247,3 +247,54 @@ function runLayout(layout)
     win:move(t.unit, screen, true)
   end
 end
+
+-- HIGHLIGHT ACTIVE WINDOW
+-- source https://gist.githubusercontent.com/ianjamieson/6e0e983839227fe57ac86ce8909d7cb9/raw/7d3ab810a92a4050df8f3472acd2bdfbde291cb2/init.lua
+local highlight = nil
+
+local function highlightWindow()
+    -- Clear any existing highlight
+    if highlight then
+        highlight:delete()
+        highlight = nil
+    end
+
+    -- Get the currently focused window
+    local win = hs.window.focusedWindow()
+    if not win then
+        return
+    end
+
+    -- Get the frame of the focused window
+    local frame = win:frame()
+
+    -- Create a new rectangle that slightly expands beyond the window's bounds
+    local borderWidth = 5 -- Width of the border
+    local highlightFrame = hs.geometry.rect(
+        frame.x - borderWidth,
+        frame.y - borderWidth,
+        frame.w + (2 * borderWidth),
+        frame.h + (2 * borderWidth)
+    )
+
+    -- Create the highlight rectangle
+    highlight = hs.drawing.rectangle(highlightFrame)
+    highlight:setStrokeColor({["red"] = 1, ["green"] = 1, ["blue"] = 1, ["alpha"] = 0.7})
+    highlight:setStrokeWidth(borderWidth)
+    highlight:setFill(false)
+    highlight:setRoundedRectRadii(10, 10) -- Optional: rounded corners
+    highlight:bringToFront(true) -- Ensure it's visible on top of the window
+    highlight:show()
+end
+
+-- Automatically remove the highlight when the focus changes
+hs.window.filter.default:subscribe(hs.window.filter.windowFocused, highlightWindow)
+hs.window.filter.default:subscribe(hs.window.filter.windowMoved, highlightWindow)
+hs.window.filter.default:subscribe(hs.window.filter.windowsChanged, highlightWindow)
+
+hs.window.filter.default:subscribe(hs.window.filter.windowUnfocused, function()
+    if highlight then
+        highlight:delete()
+        highlight = nil
+    end
+end)
