@@ -41,11 +41,32 @@ end)
 -- QUICK APPLICATION SWITCHING
 -- hs.hotkey.bind({ 'cmd'}, 'h', function() hs.application.open('Safari.app') end)
 hs.hotkey.bind({ 'cmd'}, 'h', function() hs.application.open('Google Chrome.app') end)
-hs.hotkey.bind({ 'cmd'}, 'k', function() hs.application.open('Warp.app') end)
-hs.hotkey.bind({ 'cmd'}, 'j', function() hs.application.open('Cursor.app') end)
+hs.hotkey.bind({ 'cmd'}, 'g', function() hs.application.open('Warp.app') end)
+-- hs.hotkey.bind({ 'cmd'}, 'j', function() hs.application.open('Cursor.app') end)
 -- hs.hotkey.bind({ 'cmd'}, 'j', function() hs.application.open('Visual Studio Code.app') end)
-hs.hotkey.bind({ 'cmd'}, 'g', function() hs.application.open('Slack.app') end)
+-- hs.hotkey.bind({ 'cmd'}, 'g', function() hs.application.open('Slack.app') end)
 -- hs.hotkey.bind({ 'cmd'}, 'y', function() hs.application.open('Polypane.app') end)
+
+-- Create a hotkey for Cursor.app that only works when Cursor is not in focus
+local cursorKeybinding = hs.hotkey.new({'cmd'}, 'j', function() 
+  hs.application.open('Cursor.app') 
+end)
+
+-- Create a window filter for Cursor
+local cursorWindowFilter = hs.window.filter.new('Cursor')
+
+-- Disable the hotkey when Cursor is focused (so Cursor's own cmd+j shortcut works)
+cursorWindowFilter:subscribe(hs.window.filter.windowFocused, function()
+  cursorKeybinding:disable()
+end)
+
+-- Enable the hotkey when Cursor is not focused
+cursorWindowFilter:subscribe(hs.window.filter.windowUnfocused, function()
+  cursorKeybinding:enable()
+end)
+
+-- Initially enable the hotkey (it will be disabled when Cursor becomes focused)
+cursorKeybinding:enable()
 
 hs.hotkey.bind({ 'option'}, 'p', function() hs.application.open('Spotify.app') end)
 
@@ -131,7 +152,7 @@ end
 -- Enters launch mode. The bulk of this is geared toward
 -- showing a big ugly window that can't be ignored; the
 -- keyboard is now in launch mode.
-hs.hotkey.bind({ 'cmd', 'shift' }, 'space', function()
+hs.hotkey.bind({ 'cmd', 'alt' }, 'space', function()
   launchMode:enter()
   appLauncherAlertWindow = hs.alert.show('App Launcher Mode', {
     strokeColor = hs.drawing.color.x11.black,
@@ -147,7 +168,7 @@ end)
 
 
 -- When in launch mode, hitting ctrl+space again leaves it
-launchMode:bind({ 'cmd', 'shift' }, 'space', function() leaveMode() end)
+launchMode:bind({ 'cmd', 'alt' }, 'space', function() leaveMode() end)
 
 -- Mapped keys
 launchMode:bind({}, 'a',  function() switchToApp('Simulator.app') end)
