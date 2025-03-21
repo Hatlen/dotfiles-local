@@ -16,6 +16,12 @@
 - Install homebrew apps with `brew bundle`
 - Install dotfiles `env RCRC=$HOME/dotfiles-local/rcrc rcup`
 
+## Manual tweaks
+
+- Turn off spotlight keyboard shortcuts and set raycasts to cmd+space
+- Start hammerspoon and karabiner elements and enable all required privacy and
+  security features they need.
+
 ## My dotfiles
 
 My dotfiles is based on https://github.com/thoughtbot/dotfiles which have a nice
