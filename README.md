@@ -1,6 +1,8 @@
 # Setup of a new computers
 
 - Add ssh public key to github
+- Run `xcode-select --install` to install git etc
+- Click continue in a popup that pops up (can be hidden underneath terminal.app)
 - Run `git clone git@github.com:thoughtbot/dotfiles.git`
 - Clone this repo to home folder `cd ~`
 - Run `cd ~/dotfiles-local`

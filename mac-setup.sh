@@ -1,5 +1,3 @@
-# Install mac "developer tools"
-xcode-select --install
 # Disable inserting of special characters when long pressing keys:
 defaults write -g ApplePressAndHoldEnabled -bool false
 
