@@ -1,5 +1,9 @@
 # Good docs for macos settings can be found here:https://macos-defaults.com/
 
+# Install rosetta for running x86 apps on arm macs (only needed for metasploit
+# as of 2025-03-21)
+softwareupdate --install-rosetta --agree-to-license
+
 # Keyboard settings
 ## Disable inserting of special characters when long pressing keys:
 defaults write -g ApplePressAndHoldEnabled -bool false

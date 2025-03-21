@@ -7,7 +7,12 @@
 - Clone this repo to home folder `cd ~`
 - Run `cd ~/dotfiles-local`
 - Run `bash mac-setup.sh`
+- Restart the computer for the settings to be activated
 - Install homebrew (see website for current installation instructions)
+- Temporarily add homebrew paths to PATH by doing
+  `eval "$(/opt/homebrew/bin/brew shellenv)"` (the dotfiles installed later
+  takes care of adding them permanently. The path to the executable varies
+  between arm and x86 macs)
 - Install homebrew apps with `brew bundle`
 - Install dotfiles `env RCRC=$HOME/dotfiles-local/rcrc rcup`
 
@@ -15,7 +20,9 @@
 
 My dotfiles is based on https://github.com/thoughtbot/dotfiles which have a nice
 set of defaults and a nice system for being able to extend/override the default
-dotfiles. [Thoughtbots installation instructions](https://github.com/thoughtbot/dotfiles?tab=readme-ov-file#install) can sometimes be useful.
+dotfiles. [Thoughtbots installation
+instructions](https://github.com/thoughtbot/dotfiles?tab=readme-ov-file#install)
+can sometimes be useful.
 
 ## Update dotfiles
 
@@ -31,7 +38,7 @@ config lives in config/karabiner.
 
 To switch quickly between my most used apps I've setup cmd+<letter> commands for
 warp, editor (vscode/cursor), browser (safari/chrome) with hammerspoon. So that
-one can can switch quickly between most used apps with `cmd+<homerow key>`
+one can can switch quickly between most used apps with `cmd+<homerow key>`.
 
 Hammerspoon is also used for a minimal window manager (moving to half-screen,
 the other monitor etc).

@@ -1,4 +1,3 @@
-tap "homebrew/services"
 brew "asdf"
 brew "awscli"
 brew "bat"
