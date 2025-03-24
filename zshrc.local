@@ -1,5 +1,7 @@
 # load fnm (fast version of nvm)
 eval "$(fnm env --use-on-cd)"
+# load zoxide, adds z and zi cd commands
+eval "$(zoxide init zsh)"
 
 # add the zsh-completions "package"
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -7,11 +9,10 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # Add some paths
 path=(
   $HOME/.deno/bin:$PATH
-  # link python to python3 and pip to pip3
-  /usr/local/opt/python@3.11/libexec/bin
   $HOME/go/bin
   $path
 )
 
 # Prevent storing of commands prepended by a space
 setopt HIST_IGNORE_SPACE
+
