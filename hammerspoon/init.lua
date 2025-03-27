@@ -74,9 +74,10 @@ hs.hotkey.bind({ 'option'}, 'p', function() hs.application.open('Spotify.app') e
 hs.hotkey.bind({ 'option'}, 'b', function() hs.screen'Dell':setMode(1920, 1080, 2.0, 60, 8.0) end)
 hs.hotkey.bind({ 'option'}, 'n', function() hs.screen'Dell':setMode(2560, 1440, 2.0, 60, 8.0) end)
 hs.hotkey.bind({ 'option'}, 'x', function() hs.screen'Dell':setMode(3008, 1692, 2.0, 60, 8.0) end)
-hs.hotkey.bind({ 'option', 'shift'}, 'b', function() hs.screen'Retina':setMode(1024, 640, 2.0, 0.0, 4.0) end)
-hs.hotkey.bind({ 'option', 'shift'}, 'n', function() hs.screen'Retina':setMode(1440, 900, 2.0, 0.0, 4.0) end)
-hs.hotkey.bind({ 'option', 'shift'}, 'x', function() hs.screen'Retina':setMode(1680, 1050, 2.0, 0.0, 4.0) end)
+
+hs.hotkey.bind({ 'option', 'shift'}, 'b', function() hs.screen'Retina':setMode(1280, 832, 2.0, 60.0, 8.0) end)
+hs.hotkey.bind({ 'option', 'shift'}, 'n', function() hs.screen'Retina':setMode(1470, 956, 2.0, 60.0, 8.0) end)
+hs.hotkey.bind({ 'option', 'shift'}, 'x', function() hs.screen'Retina':setMode(1710, 1112, 2.0, 60.0, 8.0) end)
 
 -- TOGGLE DARK MODE
 local toggleDarkModeAppleScript = [[
